@@ -29,7 +29,12 @@ export class MyDurableObject extends DurableObject<Env> {
 const app = new Hono()
 
 app
-	.get('/', (c) => c.text('Hello World'))
-	.get('/:id', (c) => c.text(c.req.param('id')))
+	.get('/', (c) => {
+		return c.text('Hello World')
+	})
+	.get('/:id', (c) => {
+		const id = c.req.param('id')
+		return c.text(id)
+	})
 
 export default app
